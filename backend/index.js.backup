@@ -1,0 +1,66 @@
+import express from "express";
+import mysql from "mysql"; //Importing MySQL module
+import cors from "cors";
+
+const app = express()
+
+//Body data from POST:
+app.use(express.json())
+
+//enabling Access-Control-Allow-Origin CORS header
+app.use(cors())
+
+
+//Use Route Function example:
+app.get("/", (req, res)=>{
+        res.json("Hello, this is backend")
+})
+
+//Server Listening Port:
+app.listen(8000, ()=>{
+        console.log("Server is up and running on port 8000")
+     })
+
+
+//Creating DB connection:
+const db = mysql.createConnection({
+	host:"192.168.0.9",
+	user:"root",
+	password:"admin123",
+	database:"db1"
+	});
+
+//GET Request:
+app.get("/books", (req, res)=>{
+	const q = "select * from books";
+	
+	db.query(q,(err, rows)=>{
+	
+	if(err) return res.json(err)
+	return res.json(rows)
+	})
+       });
+
+
+//POST Request:
+app.post("/books", (req, res)=>{
+	const i = "insert into books (Title, Price, Descriptions) values (?)";
+	//const values = ["Python", 150, "Pythone book"];
+	
+	const values = [
+	req.body.Title,
+	req.body.Price,
+	req.body.Descriptions
+	];
+	
+	db.query(i, [values], (err, data)=>{
+
+        if(err) return res.json(err)
+        //return res.json(data)
+        return res.json("Book inserted successfully")
+	
+        })
+});
+
+
+

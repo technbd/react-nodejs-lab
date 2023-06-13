@@ -1,0 +1,51 @@
+version: '3'
+services:
+  mysql:
+    restart: always
+    image: mysql
+    container_name: mydb
+    ports:
+      - "3306:3306"
+    mem_limit: 512m
+    networks:
+      - microservice
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+  
+  redis:
+    image: redis
+    restart: always
+    container_name: redis
+    ports:
+      - "6379:6379"
+    mem_limit: 100m
+    networks:
+      - microservice
+        
+  frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    image: frontend
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - microservice
+
+  backend:
+    build: 
+      context: ./backend
+      dockerfile: Dockerfile
+    image: backend
+    container_name: backend
+    ports:
+      - "8000:8000"
+    networks:
+      - microservice
+
+networks:
+  microservice:
+
+
