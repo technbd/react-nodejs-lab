@@ -5,7 +5,7 @@ React, NodeJS, Redis and Mysql Microservice:
 
 Architecture diagram on how to launch React, nodeJS, redis and mysql.
 
-![Screenshot](architecture-diagram.jpg)
+![Screenshot](assets/architecture-diagram.jpg)
 
 
 **Project build Technology:**
