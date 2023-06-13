@@ -23,7 +23,7 @@ Prerequisites:
 - MySql
 
 
-Build the container redis and mysql using docker-compose:
+Build the container frontend, backend, redis and mysql using docker-compose:
 
 ```
   # docker-compose build --no-cache
