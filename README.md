@@ -39,11 +39,13 @@ mysql> use movie;
 
 ```
 ```
-mysql> CREATE TABLE mreview (ID int AUTO_INCREMENT PRIMARY KEY, movieName varchar(50), movieReview varchar(100));
+mysql> ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'password';
 
 mysql> flush privileges;
 ```
 ```
+mysql> CREATE TABLE mreview (ID int AUTO_INCREMENT PRIMARY KEY, movieName varchar(50), movieReview varchar(100));
+
 mysql> insert into mreview (movieName, movieReview) values ("Hello", "Good");
 ```
 ```
