@@ -42,7 +42,7 @@ app.get("/", (req, res)=>{
 //Data insert using 'GET' method fot test purpose.
 //GET Request:
 app.get("/insert", (req, res)=> {
-	const i = "insert into mreview (movieName, movieReview) values ('Python', 'nice');";
+	const i = "insert into mreview (movieName, movieReview) values ('The Whale', 'nice');";
 	
 	db.query(i, (err, data)=> {
 	res.send("Data inserted");
